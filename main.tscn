@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0ump4l4xmm1m"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_udup7"]
+[ext_resource type="PackedScene" uid="uid://cm84wtks1mby6" path="res://bg.tscn" id="2_xbx2u"]
+[ext_resource type="FontFile" uid="uid://ba2is32am02ac" path="res://Honk-Regular.ttf" id="3_7e5n7"]
+[ext_resource type="AudioStream" uid="uid://cr3x1gn3jj236" path="res://Music/ambience sounds/forest1.mp3" id="4_y2yu6"]
+[ext_resource type="AudioStream" uid="uid://cus7m1qt6qoy3" path="res://Music/Sound effect/buttonClick.wav" id="5_e3bbt"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_udup7")
+
+[node name="ButtonPlay" type="Button" parent="."]
+offset_left = 507.0
+offset_top = 294.0
+offset_right = 670.0
+offset_bottom = 344.0
+text = "Play"
+
+[node name="ButtonQuit" type="Button" parent="."]
+offset_left = 507.0
+offset_top = 351.0
+offset_right = 670.0
+offset_bottom = 401.0
+text = "Quit"
+
+[node name="BG" parent="." instance=ExtResource("2_xbx2u")]
+
+[node name="Title" type="Label" parent="."]
+offset_left = 276.0
+offset_top = 136.0
+offset_right = 882.0
+offset_bottom = 234.0
+theme_override_colors/font_color = Color(0.741176, 0, 0.109804, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_7e5n7")
+theme_override_font_sizes/font_size = 80
+text = "Enchanted Forest"
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_y2yu6")
+autoplay = true
+bus = &"Ambience"
+
+[node name="ButtonClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_e3bbt")
+bus = &"Sons"
+
+[connection signal="pressed" from="ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="ButtonQuit" to="." method="_on_button_quit_pressed"]

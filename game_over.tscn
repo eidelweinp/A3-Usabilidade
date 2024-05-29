@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0r4hc4tjphas"]
+
+[ext_resource type="PackedScene" uid="uid://cm84wtks1mby6" path="res://bg.tscn" id="1_omy2u"]
+[ext_resource type="FontFile" uid="uid://ba2is32am02ac" path="res://Honk-Regular.ttf" id="2_nufxe"]
+[ext_resource type="AudioStream" uid="uid://cr3x1gn3jj236" path="res://Music/ambience sounds/forest1.mp3" id="3_px5se"]
+[ext_resource type="AudioStream" uid="uid://cus7m1qt6qoy3" path="res://Music/Sound effect/buttonClick.wav" id="4_mom08"]
+
+[sub_resource type="GDScript" id="GDScript_oyyaq"]
+script/source = "extends Node2D
+
+func _on_button_quit_pressed():
+	$ButtonClickSound.play()
+	await get_tree().create_timer(0.6).timeout
+	get_tree().quit()
+
+func _on_button_continue_pressed():
+	$ButtonClickSound.play()
+	await get_tree().create_timer(0.6).timeout
+	Game.playerHP = 10
+	Game.gold = 0
+	get_tree().change_scene_to_file(\"res://main.tscn\")
+"
+
+[node name="gameOver" type="Node2D"]
+script = SubResource("GDScript_oyyaq")
+
+[node name="BG" parent="." instance=ExtResource("1_omy2u")]
+
+[node name="msg" type="Label" parent="."]
+offset_left = 378.0
+offset_top = 242.0
+offset_right = 736.0
+offset_bottom = 340.0
+theme_override_colors/font_color = Color(0.741176, 0, 0.109804, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_nufxe")
+theme_override_font_sizes/font_size = 80
+text = "Game Over"
+
+[node name="ButtonRestart" type="Button" parent="."]
+offset_left = 377.0
+offset_top = 398.0
+offset_right = 540.0
+offset_bottom = 448.0
+text = "Restart"
+
+[node name="ButtonQuit" type="Button" parent="."]
+offset_left = 554.0
+offset_top = 397.0
+offset_right = 717.0
+offset_bottom = 447.0
+text = "Quit"
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_px5se")
+autoplay = true
+bus = &"Ambience"
+
+[node name="ButtonClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_mom08")
+bus = &"Sons"
+
+[connection signal="pressed" from="ButtonRestart" to="." method="_on_button_continue_pressed"]
+[connection signal="pressed" from="ButtonQuit" to="." method="_on_button_quit_pressed"]

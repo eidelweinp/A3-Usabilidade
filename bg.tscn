@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm84wtks1mby6"]
+
+[ext_resource type="Script" path="res://BG.gd" id="1_smjbq"]
+[ext_resource type="Texture2D" uid="uid://bkato0fmvs0d6" path="res://Packs/Forest of Illusion/Forest of Illusion Pack/Layers/back.png" id="2_br7wi"]
+[ext_resource type="Texture2D" uid="uid://b2xkw6h7esmfk" path="res://Packs/Forest of Illusion/Forest of Illusion Pack/Layers/middle.png" id="3_8x8yq"]
+
+[node name="BG" type="ParallaxBackground"]
+script = ExtResource("1_smjbq")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+position = Vector2(2, -3)
+motion_mirroring = Vector2(1150, 0)
+
+[node name="Back" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(189.5, 324.5)
+scale = Vector2(2.38125, 2.36397)
+texture = ExtResource("2_br7wi")
+
+[node name="Back2" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(573.686, 324.594)
+scale = Vector2(2.44143, 2.37798)
+texture = ExtResource("2_br7wi")
+
+[node name="Back3" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(958.665, 324.689)
+scale = Vector2(2.39168, 2.39208)
+texture = ExtResource("2_br7wi")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(1148, 0)
+
+[node name="Middle" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(290, 324)
+scale = Vector2(1.50521, 2.375)
+texture = ExtResource("3_8x8yq")
+
+[node name="Middle2" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(862.997, 324.345)
+scale = Vector2(1.49481, 2.37247)
+texture = ExtResource("3_8x8yq")
